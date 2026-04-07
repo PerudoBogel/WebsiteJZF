@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to JZF Website</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <img id="menu-toggle" src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='white'><path d='M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z'/></svg>" alt="Menu">
+        <nav id="menu">
+            <ul>
+                <li><a href="#" data-section="text1">Text 1</a></li>
+                <li><a href="#" data-section="text2">Text 2</a></li>
+                <li><a href="#" data-section="gallery1">Gallery 1</a></li>
+                <li><a href="#" data-section="gallery2">Gallery 2</a></li>
+                <li><a href="#" data-section="contact">Contact Me</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main id="content">
+        <section id="welcome" class="active">
+            <img src="images/welcome.jpg" alt="Welcome Image" id="welcome-image">
+        </section>
+        <section id="text1">
+            <h2>Text Section 1</h2>
+            <p>This is the first text content section.</p>
+        </section>
+        <section id="text2">
+            <h2>Text Section 2</h2>
+            <p>This is the second text content section.</p>
+        </section>
+        <section id="gallery1">
+            <h2>Photo Gallery 1</h2>
+            <div class="gallery">
+            </div>
+        </section>
+        <section id="gallery2">
+            <h2>Photo Gallery 2</h2>
+            <div class="gallery">
+            </div>
+        </section>
+        <section id="contact">
+            <h2>Contact Me</h2>
+            <p>Email: contact@jzf.com</p>
+            <p>Phone: (123) 456-7890</p>
+        </section>
+    </main>
+    <footer>
+        <p>© 2026 JZF Website • All rights reserved</p>
+    </footer>
+    <script src="js/galleryCatalog.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
