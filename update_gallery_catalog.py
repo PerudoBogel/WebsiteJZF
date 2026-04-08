@@ -6,8 +6,8 @@ GALLERY_DIR = BASE_DIR / 'images'
 CATALOG_FILE = BASE_DIR / 'js' / 'galleryCatalog.js'
 
 FOLDERS = {
-    'gallery1': 'image1',
-    'gallery2': 'image2',
+    'rzezby': 'rzezby',
+    'medale': 'medale',
 }
 
 EXTENSIONS = {'.jpg', '.jpeg', ".png"}

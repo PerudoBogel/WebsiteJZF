@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Populate galleries from directory catalog
+    // Build galleries and arrow navigation.
     const catalog = typeof galleryCatalog !== 'undefined' ? galleryCatalog : {};
     const dirMapping = typeof galleryDirMapping !== 'undefined' ? galleryDirMapping : {};
 
@@ -43,61 +43,96 @@ document.addEventListener('DOMContentLoaded', function() {
                 return ext === '.jpg' || ext === '.jpeg' || ext === '.png';
             })
             .forEach(file => {
+                const slide = document.createElement('div');
+                slide.className = 'gallery-slide';
                 const img = document.createElement('img');
                 img.src = `images/${catalogKey}/${file}`;
                 img.alt = 'Gallery image';
-                galleryDiv.appendChild(img);
+                slide.appendChild(img);
+                galleryDiv.appendChild(slide);
             });
     });
 
-    // Add drag/swipe functionality
-    const galleries = document.querySelectorAll('.gallery');
-    galleries.forEach(gallery => {
-        let isDown = false;
-        let startX;
-        let scrollLeft;
+    const galleryContainers = document.querySelectorAll('.gallery-container');
+    galleryContainers.forEach(container => {
+        const gallery = container.querySelector('.gallery');
+        const prevButton = container.querySelector('.gallery-nav-left');
+        const nextButton = container.querySelector('.gallery-nav-right');
+        const slides = gallery.querySelectorAll('.gallery-slide');
+        let currentIndex = 0;
+        const totalSlides = slides.length;
 
-        gallery.addEventListener('mousedown', (e) => {
-            isDown = true;
-            gallery.classList.add('active');
-            startX = e.pageX - gallery.offsetLeft;
-            scrollLeft = gallery.scrollLeft;
-        });
+        const updateArrowVisibility = () => {
+            if (!prevButton || !nextButton) return;
+            if (totalSlides <= 1) {
+                prevButton.style.display = 'none';
+                nextButton.style.display = 'none';
+                return;
+            }
+            prevButton.style.display = currentIndex > 0 ? 'flex' : 'none';
+            nextButton.style.display = currentIndex < totalSlides - 1 ? 'flex' : 'none';
+        };
 
-        gallery.addEventListener('mouseleave', () => {
-            isDown = false;
-            gallery.classList.remove('active');
-        });
+        const goToSlide = (index) => {
+            currentIndex = Math.min(Math.max(index, 0), totalSlides - 1);
+            gallery.scrollTo({ left: currentIndex * gallery.clientWidth, behavior: 'smooth' });
+            updateArrowVisibility();
+        };
 
-        gallery.addEventListener('mouseup', () => {
-            isDown = false;
-            gallery.classList.remove('active');
-        });
+        if (prevButton) {
+            prevButton.addEventListener('click', () => goToSlide(currentIndex - 1));
+        }
+        if (nextButton) {
+            nextButton.addEventListener('click', () => goToSlide(currentIndex + 1));
+        }
 
-        gallery.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - gallery.offsetLeft;
-            const walk = (x - startX) * 2; // scroll speed
-            gallery.scrollLeft = scrollLeft - walk;
-        });
-
-        // For touch
-        gallery.addEventListener('touchstart', (e) => {
-            isDown = true;
-            startX = e.touches[0].pageX - gallery.offsetLeft;
-            scrollLeft = gallery.scrollLeft;
-        });
-
-        gallery.addEventListener('touchend', () => {
-            isDown = false;
-        });
-
-        gallery.addEventListener('touchmove', (e) => {
-            if (!isDown) return;
-            const x = e.touches[0].pageX - gallery.offsetLeft;
-            const walk = (x - startX) * 2;
-            gallery.scrollLeft = scrollLeft - walk;
-        });
+        updateArrowVisibility();
+        window.addEventListener('resize', () => goToSlide(currentIndex));
     });
+
+    const aboutSlider = document.querySelector('.text-slider');
+    const aboutSection = document.getElementById('about');
+    if (aboutSlider && aboutSection && typeof aboutSlides !== 'undefined') {
+        aboutSlides.forEach(text => {
+            const slide = document.createElement('div');
+            slide.className = 'text-slide';
+            const paragraph = document.createElement('p');
+            paragraph.innerHTML = text;
+            slide.appendChild(paragraph);
+            aboutSlider.appendChild(slide);
+        });
+
+        const prevButton = aboutSection.querySelector('.text-nav-left');
+        const nextButton = aboutSection.querySelector('.text-nav-right');
+        const totalSlides = aboutSlides.length;
+        let currentIndex = 0;
+
+        const updateArrowVisibility = () => {
+            if (prevButton) {
+                prevButton.style.display = currentIndex > 0 ? 'flex' : 'none';
+            }
+            if (nextButton) {
+                nextButton.style.display = currentIndex < totalSlides - 1 ? 'flex' : 'none';
+            }
+        };
+
+        const goToSlide = (index) => {
+            currentIndex = Math.min(Math.max(index, 0), totalSlides - 1);
+            aboutSlider.scrollTo({ left: currentIndex * aboutSlider.clientWidth, behavior: 'smooth' });
+            updateArrowVisibility();
+        };
+
+        if (prevButton) {
+            prevButton.addEventListener('click', () => goToSlide(currentIndex - 1));
+        }
+        if (nextButton) {
+            nextButton.addEventListener('click', () => goToSlide(currentIndex + 1));
+        }
+
+        updateArrowVisibility();
+
+        window.addEventListener('resize', () => {
+            goToSlide(currentIndex);
+        });
+    }
 });
