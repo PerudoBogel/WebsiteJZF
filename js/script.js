@@ -135,4 +135,70 @@ document.addEventListener('DOMContentLoaded', function() {
             goToSlide(currentIndex);
         });
     }
+
+    // Render timeline for osiagniecia section
+    const timelineContainer = document.querySelector('.timeline-container');
+    if (timelineContainer && typeof timelineEvents !== 'undefined' && typeof timelineMilestones !== 'undefined') {
+        const timeline = document.createElement('div');
+        timeline.className = 'timeline';
+
+        // Create axis line
+        const axis = document.createElement('div');
+        axis.className = 'timeline-axis';
+        timeline.appendChild(axis);
+
+        // Calculate year range based on EVENTS only
+        const eventYears = timelineEvents.map(e => parseInt(e.year));
+        const minYear = Math.min(...eventYears);
+        const maxYear = Math.max(...eventYears);
+        const yearRange = maxYear - minYear;
+        const totalEvents = timelineEvents.length;
+
+        // Add milestones positioned based on their actual timestamps
+        timelineMilestones.forEach(milestone => {
+            const milestoneYear = parseInt(milestone.year);
+            
+            // Only show milestones within the event year range
+            if (milestoneYear < minYear || milestoneYear > maxYear) {
+                return;
+            }
+            
+            // Position proportionally based on the year within the event range
+            const yearPosition = yearRange > 0 ? ((milestoneYear - minYear) / yearRange) * 100 : 0;
+
+            const milestoneDiv = document.createElement('div');
+            milestoneDiv.className = 'timeline-milestone';
+            milestoneDiv.style.left = `${yearPosition}%`;
+
+            const marker = document.createElement('div');
+            marker.className = 'timeline-milestone-marker';
+
+            const text = document.createElement('div');
+            text.className = 'timeline-milestone-text';
+            text.textContent = milestone.label;
+
+            milestoneDiv.appendChild(text);
+            milestoneDiv.appendChild(marker);
+            timeline.appendChild(milestoneDiv);
+        });
+
+        // Add events (evenly spaced)
+        timelineEvents.forEach((event, index) => {
+            const eventDiv = document.createElement('div');
+            eventDiv.className = 'timeline-event';
+
+            const marker = document.createElement('div');
+            marker.className = 'timeline-marker';
+
+            const text = document.createElement('div');
+            text.className = 'timeline-event-text';
+            text.innerHTML = `<strong>${event.year}</strong><br>${event.description}`;
+
+            eventDiv.appendChild(marker);
+            eventDiv.appendChild(text);
+            timeline.appendChild(eventDiv);
+        });
+
+        timelineContainer.appendChild(timeline);
+    }
 });

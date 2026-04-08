@@ -259,13 +259,94 @@ footer {
     overflow: hidden;
 }
 
-.text-slide p {
-    margin: 0;
-    font-size: 1rem;
-    line-height: 1.6;
-    max-width: 900px;
-    text-align: center;
-    overflow: hidden;
-    overflow-y: auto;
-    max-height: 100%;
+.timeline-container {
+    width: 100%;
+    overflow-x: auto;
+    padding: 20px 0;
 }
+
+.timeline {
+    display: flex;
+    position: relative;
+    min-width: max-content;
+    padding: 40px 250px;
+    align-items: flex-start;
+}
+
+.timeline-axis {
+    position: absolute;
+    top: 50px;
+    left: 0px;
+    right: 0px;
+    height: 6px;
+    background-color: #666;
+    border: 2px solid #333;
+    border-radius: 3px;
+    z-index: 1;
+}
+
+.timeline-event {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 60px;
+    min-width: 120px;
+}
+
+.timeline-marker {
+    width: 8px;
+    height: 16px;
+    background-color: #333;
+    border: 2px solid #666;
+    position: relative;
+    z-index: 2;
+    margin: 16px 0 8px 0; /* Extend 8px up and 8px down from axis */
+    border-radius: 2px;
+}
+
+.timeline-milestone-marker {
+    width: 8px;
+    height: 24px;
+    background-color: #666;
+    border: 2px solid #999;
+    position: relative;
+    z-index: 2;
+    margin: 12px 0 24px 0; /* Extend 12px up and 12px down from axis */
+    border-radius: 2px;
+}
+
+.timeline-event-text {
+    background-color: #f7f7f7;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 150px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.timeline-milestone {
+    position: absolute;
+    top: 0px;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.timeline-milestone-text {
+    font-size: 0.8rem;
+    color: #666;
+    font-weight: bold;
+    white-space: nowrap;
+    transform: rotate(-90deg);
+    transform-origin: center;
+    margin-top: 5px;
+}
+
+.timeline-milestone-line {
+    display: none; /* Not needed with rectangle markers */
+}
+
