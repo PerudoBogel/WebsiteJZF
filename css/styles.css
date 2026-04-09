@@ -22,6 +22,7 @@ header {
     position: relative;
     flex-shrink: 0;
     height: 65px;
+    font-size: 20px;
 }
 
 #menu-toggle {
@@ -55,8 +56,8 @@ header {
 #menu-select {
     position: absolute;
     top: 0;
-    right: 5px;
-    width: 800px;
+    right: 0px;
+    width: auto;
     height: 100%;
     z-index: 5;
 }
@@ -70,13 +71,18 @@ header {
 }
 
 #menu-select li {
-    flex: 1;
+    display: flex;
 }
+
+#menu-select li a{
+    width: 150px;
+}
+
 #menu-select li:not(:last-child)::after {
   content: "|";     /* Dodaje pionową kreskę */
-  margin: 0 10px;   /* Dodaje odstęp po bokach kreski */
   color: #ccc;      /* Kolor separatora */
   z-index: 10;
+  font-size: 50px
 }
 
 #menu-select a {
@@ -101,6 +107,7 @@ main {
     overflow: auto;
     align-items: center;
     justify-content: center;
+    font-size: 40px;
 }
 
 section {
