@@ -1,11 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
     const menuToggle = document.getElementById('menu-toggle');
     const menu = document.getElementById('menu');
-    const menuLinks = menu.querySelectorAll('a');
+    const menuLinks = document.getElementById('menu-select').querySelectorAll('a');
     const sections = document.querySelectorAll('section');
 
     menuToggle.addEventListener('click', function() {
-        menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+        menuToggle.style.display = menuToggle.style.display === 'none' ? 'flex' : 'none';
     });
 
     menuLinks.forEach(link => {
@@ -24,6 +25,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             document.getElementById(sectionId).classList.add('active');
+            menu.style.display = 'none';
+            menuToggle.style.display = 'flex';
         });
     });
 

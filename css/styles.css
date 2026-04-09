@@ -6,35 +6,62 @@ body {
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Montserrat", sans-serif;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background-color: #ababab;
 }
 
-header {
-    background-color: #333;
+header {  
+    justify-content: space-between; /* Horizontal spacing */
+    align-items: center;          /* Vertical alignment */
+    display: flex;
+    background-color: #ababab;
     color: white;
-    padding: 10px;
     position: relative;
     flex-shrink: 0;
+    height: 65px;
 }
 
 #menu-toggle {
     cursor: pointer;
+    position: relative;
+    z-index: 10;
+}
+
+#menu-logo {
+    position: relative;
+    z-index: 10;
+    left: 0px;
+}
+
+#menu-name {
+    position: relative;
+    z-index: 10;
+    left: 10px;
 }
 
 #menu {
     display: none;
     position: absolute;
-    top: 0;
-    left: 50px;
-    width: calc(100% - 50px);
-    height: 100%;
-    background-color: #333;
+    align-items: center;          /* Vertical alignment */
+    width: 100%;
+    background-color: #8d8d8d;
+    height: 65px;
+    top: 0px;
 }
 
-#menu ul {
+#menu-select {
+    position: absolute;
+    top: 0;
+    right: 5px;
+    width: 800px;
+    height: 100%;
+    z-index: 5;
+}
+
+#menu-select ul {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -42,11 +69,17 @@ header {
     height: 100%;
 }
 
-#menu li {
+#menu-select li {
     flex: 1;
 }
+#menu-select li:not(:last-child)::after {
+  content: "|";     /* Dodaje pionową kreskę */
+  margin: 0 10px;   /* Dodaje odstęp po bokach kreski */
+  color: #ccc;      /* Kolor separatora */
+  z-index: 10;
+}
 
-#menu a {
+#menu-select a {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -55,7 +88,7 @@ header {
     text-decoration: none;
 }
 
-#menu a:hover {
+#menu-select a:hover {
     background-color: #555;
 }
 
@@ -101,7 +134,7 @@ section.active p {
 }
 
 footer {
-    background-color: #333;
+    background-color: #8d8d8d;
     color: white;
     text-align: center;
     padding: 15px 20px;
@@ -254,7 +287,7 @@ footer {
     align-items: center;
     justify-content: center;
     height: 100%;
-    background-color: #f7f7f7;
+    background-color: #ababab;
     border-radius: 10px;
     overflow: hidden;
 }

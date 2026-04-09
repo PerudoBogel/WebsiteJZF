@@ -1,16 +1,24 @@
 const galleryCatalog = {
     'rzezby': [
-        "Picture1.png",
+        "Rectangle 1.png",
+        "Rectangle 2.png",
+        "Rectangle 3.png",
+        "Rectangle 4.png",
+        "Rectangle 5.png",
+        "Rectangle 6.png",
+        "Rectangle 7.png",
     ],
     'medale': [
-        "Picture1 copy 2.png",
-        "Picture1 copy.png",
-        "Picture1.png",
-        "pobrane (1).jpg",
-        "pobrane (2).jpg",
-        "pobrane (3).jpg",
-        "pobrane (4).jpg",
-        "pobrane.jpg",
+        "DSC00151.png",
+        "DSC00169.png",
+        "DSC00170.png",
+        "Frame 61.png",
+        "Frame 62.png",
+        "Rectangle 37.png",
+        "Rectangle 38.png",
+        "Rectangle 42.png",
+        "Rectangle 43.png",
+        "medal.png",
     ],
 };
 

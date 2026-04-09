@@ -5,23 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to JZF Website</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <img id="menu-toggle" src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='white'><path d='M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z'/></svg>" alt="Menu">
-        <nav id="menu">
-            <ul>
-                <li><a href="#" data-section="about">O autorze</a></li>
-                <li><a href="#" data-section="osiagniecia">Osiągnięcia</a></li>
-                <li><a href="#" data-section="rzezby">Rzeźby</a></li>
-                <li><a href="#" data-section="medale">Medale</a></li>
-                <li><a href="#" data-section="contact">Contact Me</a></li>
-            </ul>
-        </nav>
+        <img id="menu-toggle" src="images/NAVI.png" alt="Menu">
+        <div id="menu">
+            <img id="menu-logo" src="images/NAVIBlank.png" alt="Menu">
+            <div id="menu-name">Józef Wąsacz</div>
+            <nav id="menu-select">
+                <ul>
+                    <li><a href="#" data-section="about">O autorze</a></li>
+                    <li><a href="#" data-section="osiagniecia">Osiągnięcia</a></li>
+                    <li><a href="#" data-section="rzezby">Rzeźby</a></li>
+                    <li><a href="#" data-section="medale">Medale</a></li>
+                    <li><a href="#" data-section="contact">Contact Me</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
     <main id="content">
         <section id="welcome" class="active">
-            <img src="images/welcome.jpg" alt="Welcome Image" id="welcome-image">
+            <img src="images/welcome.png" alt="Welcome Image" id="welcome-image">
         </section>
         <section id="about">
             <div class="about-inner">
@@ -32,9 +39,6 @@
         </section>
         <section id="osiagniecia">
             <div class="timeline-container"></div>
-        </section>
-        <section id="text2">
-            <p>This is the second text content section.</p>
         </section>
         <section id="rzezby">
             <div class="gallery-container">
