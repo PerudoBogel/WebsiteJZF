@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Render timeline for osiagniecia section
     const timelineContainer = document.querySelector('.timeline-container');
-    if (timelineContainer && typeof timelineEvents !== 'undefined' && typeof timelineMilestones !== 'undefined') {
+    if (timelineContainer && typeof timelineEvents !== 'undefined') {
         const timeline = document.createElement('div');
         timeline.className = 'timeline';
 
@@ -150,43 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
         axis.className = 'timeline-axis';
         timeline.appendChild(axis);
 
-        // Calculate year range based on EVENTS only
-        const eventYears = timelineEvents.map(e => parseInt(e.year));
-        const minYear = Math.min(...eventYears);
-        const maxYear = Math.max(...eventYears);
-        const yearRange = maxYear - minYear;
-        const totalEvents = timelineEvents.length;
-
-        // Add milestones positioned based on their actual timestamps
-        timelineMilestones.forEach(milestone => {
-            const milestoneYear = parseInt(milestone.year);
-            
-            // Only show milestones within the event year range
-            if (milestoneYear < minYear || milestoneYear > maxYear) {
-                return;
-            }
-            
-            // Position proportionally based on the year within the event range
-            const yearPosition = yearRange > 0 ? ((milestoneYear - minYear) / yearRange) * 100 : 0;
-
-            const milestoneDiv = document.createElement('div');
-            milestoneDiv.className = 'timeline-milestone';
-            milestoneDiv.style.left = `${yearPosition}%`;
-
-            const marker = document.createElement('div');
-            marker.className = 'timeline-milestone-marker';
-
-            const text = document.createElement('div');
-            text.className = 'timeline-milestone-text';
-            text.textContent = milestone.label;
-
-            milestoneDiv.appendChild(text);
-            milestoneDiv.appendChild(marker);
-            timeline.appendChild(milestoneDiv);
-        });
-
-        // Add events (evenly spaced)
-        timelineEvents.forEach((event, index) => {
+        function addEventMarker(event) {
             const eventDiv = document.createElement('div');
             eventDiv.className = 'timeline-event';
 
@@ -195,12 +159,48 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const text = document.createElement('div');
             text.className = 'timeline-event-text';
-            text.innerHTML = `<strong>${event.year}</strong><br>${event.description}`;
+            text.innerHTML = `${event.description}`;
 
             eventDiv.appendChild(marker);
             eventDiv.appendChild(text);
             timeline.appendChild(eventDiv);
-        });
+        }
+        
+        function addMilestoneMarker(year,position) {
+            const milestoneDiv = document.createElement('div');
+            milestoneDiv.className = 'timeline-milestone';
+            milestoneDiv.style.left = `${position}px`;
+
+            const marker = document.createElement('div');
+            marker.className = 'timeline-milestone-marker';
+
+            const text = document.createElement('div');
+            text.className = 'timeline-milestone-text';
+            text.textContent = year;
+
+            milestoneDiv.appendChild(text);
+            milestoneDiv.appendChild(marker);
+            timeline.appendChild(milestoneDiv);
+            console.log(`Added milestone for year ${year} at position ${milestoneDiv.style.left}`);
+        }
+
+        // Add milestones positioned based on their actual timestamps
+        eventCount = timelineEvents.length;
+        eventWidth = 250;
+        timelinePadding = 250;
+        lastYear = null;
+        for ( event_i = 0; event_i < eventCount; event_i++) {
+            
+            let event = timelineEvents.at(event_i);
+            let eventYear = event.year;
+            addEventMarker(event);
+
+            // add milestone if year changed
+            if (lastYear != eventYear) {
+                addMilestoneMarker(eventYear, ((event_i +1) * eventWidth) / eventCount * 10 + timelinePadding);
+            }
+            lastYear = eventYear;
+        };
 
         timelineContainer.appendChild(timeline);
     }

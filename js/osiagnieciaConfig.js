@@ -10,6 +10,10 @@ const timelineEvents = [
         description: "Pierwsza wystawa indywidualna"
     },
     {
+        year: "2017",
+        description: "cos wystawa indywidualna"
+    },
+    {
         year: "2019",
         description: "Nagroda za rzeźbę współczesną"
     },
@@ -37,12 +41,4 @@ const timelineEvents = [
         year: "2027",
         description: "Publikacja książki o sztuce 4"
     }
-];
-
-// Time milestones are positioned based on year but don't affect event spacing
-const timelineMilestones = [
-    { year: "2018", label: "2018" },
-    { year: "2020", label: "2020" },
-    { year: "2025", label: "2025" },
-    { year: "2050", label: "2050" }
 ];

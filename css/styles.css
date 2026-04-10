@@ -18,7 +18,7 @@ header {
     align-items: center;          /* Vertical alignment */
     display: flex;
     background-color: #ababab;
-    color: white;
+    color: #d7d7d7;
     position: relative;
     flex-shrink: 0;
     height: 65px;
@@ -80,7 +80,7 @@ header {
 
 #menu-select li:not(:last-child)::after {
   content: "|";     /* Dodaje pionową kreskę */
-  color: #ccc;      /* Kolor separatora */
+  color: #d7d7d7;      /* Kolor separatora */
   z-index: 10;
   font-size: 50px
 }
@@ -135,14 +135,15 @@ section.active p {
 
 #welcome {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    position: absolute;
+    top: 0px;
+    left: 0px;
     flex: 1;
 }
 
 footer {
     background-color: #8d8d8d;
-    color: white;
+    color: #d7d7d7;
     text-align: center;
     padding: 15px 20px;
     font-size: 14px;
@@ -151,10 +152,10 @@ footer {
 
 #welcome-image {
     display: block;
-    margin: 0 auto;
     width: 100%;
-    max-width: 800px;
     height: auto;
+    -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
 }
 
 .gallery-container {
@@ -199,7 +200,7 @@ footer {
     min-height: 120px;
     border: none;
     background: rgba(0, 0, 0, 0.2);
-    color: white;
+    color: #d7d7d7;
     font-size: 2rem;
     line-height: 1;
     display: flex;
@@ -258,7 +259,7 @@ footer {
     min-height: 120px;
     border: none;
     background: rgba(0, 0, 0, 0.2);
-    color: white;
+    color: #d7d7d7;
     font-size: 2rem;
     line-height: 1;
     display: flex;
@@ -303,6 +304,8 @@ footer {
     width: 100%;
     overflow-x: auto;
     padding: 20px 0;
+    /* scrollbar-color: [kolor uchwytu] [kolor tła paska] */
+    scrollbar-color: #8d8d8d #ababab;
 }
 
 .timeline {
@@ -315,12 +318,11 @@ footer {
 
 .timeline-axis {
     position: absolute;
-    top: 50px;
+    top: 200px;
     left: 0px;
     right: 0px;
-    height: 6px;
-    background-color: #666;
-    border: 2px solid #333;
+    height: 35px;
+    background-color: #d7d7d7;
     border-radius: 3px;
     z-index: 1;
 }
@@ -330,41 +332,35 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 60px;
-    min-width: 120px;
+    margin-top: 180px;
+    width: 250px;
 }
 
 .timeline-marker {
-    width: 8px;
-    height: 16px;
-    background-color: #333;
-    border: 2px solid #666;
+    width: 25px;
+    height: 70px;
+    background-color: #8d8d8d;
     position: relative;
     z-index: 2;
-    margin: 16px 0 8px 0; /* Extend 8px up and 8px down from axis */
     border-radius: 2px;
 }
 
 .timeline-milestone-marker {
-    width: 8px;
-    height: 24px;
-    background-color: #666;
-    border: 2px solid #999;
+    width: 10px;
+    height: 60px;
+    background-color: #e6e6e6;
     position: relative;
-    z-index: 2;
-    margin: 12px 0 24px 0; /* Extend 12px up and 12px down from axis */
     border-radius: 2px;
+    margin-top: 30px;
 }
 
 .timeline-event-text {
-    background-color: #f7f7f7;
     padding: 15px;
     border-radius: 8px;
     text-align: center;
     max-width: 150px;
-    font-size: 0.9rem;
+    font-size: 1.5rem;
     line-height: 1.4;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .timeline-milestone {
@@ -374,16 +370,17 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 3;
+    margin-top: 95px;
 }
 
 .timeline-milestone-text {
-    font-size: 0.8rem;
+    font-size: 1.5rem;
     color: #666;
     font-weight: bold;
     white-space: nowrap;
     transform: rotate(-90deg);
     transform-origin: center;
-    margin-top: 5px;
 }
 
 .timeline-milestone-line {
