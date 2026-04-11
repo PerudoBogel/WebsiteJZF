@@ -183,7 +183,6 @@ document.addEventListener('DOMContentLoaded', function() {
             milestoneDiv.appendChild(text);
             milestoneDiv.appendChild(marker);
             timeline.appendChild(milestoneDiv);
-            console.log(`Added milestone for year ${year} at position ${milestoneDiv.style.left}`);
         }
 
         // Add milestones positioned based on their actual timestamps
