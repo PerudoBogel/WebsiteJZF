@@ -18,10 +18,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 section.classList.remove('active');
             });
 
+            let footer = document.getElementsByTagName('footer')[0];
             const welcomeSection = document.getElementById('welcome');
             if (welcomeSection && sectionId !== 'welcome') {
-                welcomeSection.classList.remove('active');
+                welcomeSection.classList.remove('active');  
                 welcomeSection.style.display = 'none';
+                footer.style.display = 'block';
             }
 
             document.getElementById(sectionId).classList.add('active');
@@ -197,7 +199,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // add milestone if year changed
             if (lastYear != eventYear) {
-                addMilestoneMarker(eventYear, ((event_i +1) * eventWidth) / eventCount * 10 + timelinePadding);
+                addMilestoneMarker(eventYear, (event_i * eventWidth) / eventCount * 10 + timelinePadding);
             }
             lastYear = eventYear;
         };
