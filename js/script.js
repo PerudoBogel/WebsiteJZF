@@ -34,24 +34,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Build galleries and arrow navigation.
     const catalog = typeof galleryCatalog !== 'undefined' ? galleryCatalog : {};
-    const dirMapping = typeof galleryDirMapping !== 'undefined' ? galleryDirMapping : {};
-
-    Object.keys(dirMapping).forEach(galleryId => {
-        const catalogKey = dirMapping[galleryId];
-        const files = catalog[catalogKey] || [];
-        const galleryDiv = document.querySelector(`#${galleryId} .gallery`);
+    Object.keys(catalog).forEach(galleryId => {
+        const catalogKey = galleryId;
+        const files = Object.values(catalog[catalogKey])
+            .flat()
+            .map(item => `${catalogKey}/${item.name}/${item.cover}`);
+        const galleryDiv = document.querySelector(`#${catalogKey} .gallery`);
+        console.log(`Rendering gallery ${galleryId} with files:`, files);
+        console.log(`Gallery div for ${galleryId}:`, galleryDiv);
         if (!galleryDiv) return;
 
         files
             .filter(file => {
                 const ext = file.toLowerCase().slice(file.lastIndexOf('.'));
+                console.log(`Checking file ${file} with extension ${ext}`);
                 return ext === '.jpg' || ext === '.jpeg' || ext === '.png';
             })
             .forEach(file => {
                 const slide = document.createElement('div');
                 slide.className = 'gallery-slide';
                 const img = document.createElement('img');
-                img.src = `images/${catalogKey}/${file}`;
+                img.src = `images/${file}`;
                 img.alt = 'Gallery image';
                 slide.appendChild(img);
                 galleryDiv.appendChild(slide);
