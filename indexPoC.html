@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Moje Galerie</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; text-align: center; }
+        .category-section { margin-bottom: 40px; border-bottom: 1px solid #ddd; padding-bottom: 20px; }
+        .gallery-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+        .gal-btn { 
+            width: 200px; cursor: pointer; border: 1px solid #ccc; border-radius: 8px; overflow: hidden;
+            transition: transform 0.2s; background: white;
+        }
+        .gal-btn:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .gal-btn img { width: 100%; height: 120px; object-fit: cover; background: #eee; }
+        .gal-btn div { padding: 10px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Katalog Zdjęć</h1>
+    <div id="main-container"></div>
+
+    <script src="js/data.js"></script>
+    <script>
+        const container = document.getElementById('main-container');
+
+        for (const [category, galleries] of Object.entries(galleryCatalog)) {
+            const section = document.createElement('div');
+            section.className = 'category-section';
+            section.innerHTML = `<h2>${category}</h2>`;
+            
+            const grid = document.createElement('div');
+            grid.className = 'gallery-grid';
+
+            galleries.forEach(gal => {
+                const btn = document.createElement('div');
+                btn.className = 'gal-btn';
+                const coverSrc = gal.cover ? `images/${category}/${gal.name}/${gal.cover}` : '';
+                
+                btn.innerHTML = `
+                    <img src="${coverSrc}" alt="">
+                    <div>${gal.name}</div>
+                `;
+                
+                btn.onclick = () => {
+                    window.location.href = `gallery.html?cat=${encodeURIComponent(category)}&gal=${encodeURIComponent(gal.name)}`;
+                };
+                grid.appendChild(btn);
+            });
+
+            section.appendChild(grid);
+            container.appendChild(section);
+        }
+    </script>
+</body>
+</html>
