@@ -16,32 +16,39 @@ function toggleMenu(sectionId)
         footer.style.display = 'block';
     }
 
+    if (sectionId === 'welcome')
+    {
+        welcomeSection.style.display = 'block';
+    }
+        
     document.getElementById(sectionId).classList.add('active');
     menu.style.display = 'none';
     menuToggle.style.display = 'flex';
 }
 
-const params = new URLSearchParams(window.location.search);
-
-if(params.has('cat'))
-{
-    switch(params.get('cat')) 
-    {
-        case 'rzezby':
-            toggleMenu('rzezby');
-            break;
-        case 'medale':
-            toggleMenu('medale');
-            break;
-        default:
-            break;
-    }
-}
-
-
 document.addEventListener('DOMContentLoaded', function() {
     const menuLinks = document.getElementById('menu-select').querySelectorAll('a');
     console.log('loaded');
+    
+    const params = new URLSearchParams(window.location.search);
+
+    if(params.has('cat'))
+    {
+        switch(params.get('cat')) 
+        {
+            case 'rzezby':
+                toggleMenu('rzezby');
+                break;
+            case 'medale':
+                toggleMenu('medale');
+                break;
+            default:
+                break;
+        }
+    }else
+    {
+        toggleMenu('welcome');
+    }
 
     menuToggle.addEventListener('click', function() {
         menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
