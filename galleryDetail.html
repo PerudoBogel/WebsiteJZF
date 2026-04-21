@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Galeria</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+<body>
+    <header>
+        <img id="menuBack" src="images/NAVIback.png" alt="Menu">
+        <div id="desc">
+        </div>
+    </header>
+    <main id="content">
+        <section>
+            <div class="gallery-container">
+                <button class="gallery-nav gallery-nav-left" aria-label="Previous image">‹</button>
+                <div class="gallery"></div>
+                <button class="gallery-nav gallery-nav-right" aria-label="Next image">›</button>
+            </div>
+        </section>
+    </main>
+    <!-- <a>← Powrót</a>
+    <h1 id="title"></h1>
+    <div id="description" class="desc"></div>
+    <div id="gallery" class="grid"></div> -->
+
+    <script src="js/detail_data.js"></script>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const cat = params.get('cat');
+        const gal = params.get('gal');
+        const key = `${cat}/${gal}`;
+        const data = galleryDetails[key];
+
+        if (data) {
+            document.getElementById('title').innerText = `${cat} > ${gal}`;
+            document.getElementById('description').innerText = data.description || "Brak opisu.";
+            
+            const container = document.getElementById('gallery');
+            data.images.forEach(imgName => {
+                const img = document.createElement('img');
+                img.src = `images/${cat}/${gal}/${imgName}`;
+                container.appendChild(img);
+            });
+        }
+
+        const backLink = document.querySelector('a');
+        backLink.href = `index.html?cat=${encodeURIComponent(cat)}`;
+    </script>
+</body>
+</html>
