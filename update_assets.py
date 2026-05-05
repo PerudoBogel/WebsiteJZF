@@ -47,7 +47,7 @@ def generate_data():
             # Klucz detali to "Kategoria/Galeria" dla unikalności
             details[f"{cat}/{gal}"] = {
                 "description": description,
-                "images": images
+                "images": images[1:] if len(images) > 1 else []
             }
 
     with open(DATA_FILE, 'w', encoding='utf-8') as f:
