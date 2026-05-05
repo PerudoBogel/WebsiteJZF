@@ -29,7 +29,7 @@ footer {
     text-align: center;
     font-size: 14px; 
     flex-shrink: 0;
-    display: none;
+    display: block;
     height: 65px;
 }
 

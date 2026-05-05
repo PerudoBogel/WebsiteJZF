@@ -5,7 +5,7 @@ const gal = params.get('gal');
 const key = `${cat}/${gal}`;
 const data = galleryDetails[key];
 const backLink = document.getElementById('menuBack');
-backLink.href = `index.html?cat=${encodeURIComponent(cat)}`;
+// backLink.href = `index.html?cat=${encodeURIComponent(cat)}`;
 
 if (data) {
     // Build galleries and arrow navigation.
@@ -62,5 +62,5 @@ if (data) {
         updateArrowVisibility();
         window.addEventListener('resize', () => goToSlide(currentIndex));
     });
-    document.getElementById('title').innerText = data.description || "Brak opisu.";
+    // document.getElementById('title').innerText = data.description || "Brak opisu.";
 }

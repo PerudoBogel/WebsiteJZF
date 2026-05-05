@@ -12,11 +12,19 @@
 <body>
 <body>
     <header>
-        <a id="menuBack" style ="display: contents;">
-            <img src="images/NAVIback.png" alt="Menu">
-        </a>
-        <div id="desc">
-            <p id="title"> opis pracy</p>
+        <img id="menu-toggle" src="images/NAVI.png" alt="Menu">
+        <div id="menu">
+            <img id="menu-logo" src="images/NAVIBlank.png" alt="Menu">
+            <div id="menu-name">Józef Wąsacz</div>
+            <nav id="menu-select">
+                <ul>
+                    <li><a href="about.html">O autorze</a></li>
+                    <li><a href="osiagniecia.html">Osiągnięcia</a></li>
+                    <li><a href="rzezby.html">Rzeźby</a></li>
+                    <li><a href="medale.html">Medale</a></li>
+                    <li><a href="contact.html">Kontakt</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
     <main id="content">
@@ -31,6 +39,7 @@
     <footer style ="display: block;">
         <p>© 2026 JZF Website • All rights reserved</p>
     </footer>
+    <script src="js/menu.js" defer></script>
     <script src="js/detail_data.js" defer></script>
     <script src="js/Galleryscript.js" defer></script>
 </body>
