@@ -10,3 +10,17 @@
     align-items: center;
     justify-content: center;
 }
+
+#menuBack {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    height: 100%;
+    width: 65px;
+    z-index: 10;
+    color: #333;
+    text-decoration: double;
+    font-size: 50px;
+    vertical-align: middle;
+    justify-content: center;
+}
