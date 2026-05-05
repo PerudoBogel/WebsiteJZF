@@ -1,39 +1,68 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {    
+    // Build galleries and arrow navigation.
     const catalog = typeof galleryCatalog !== 'undefined' ? galleryCatalog : {};
-    
-    // Znajdź sekcję, która jest obecna na stronie (rzezby lub medale)
-    const activeSection = document.querySelector('section[id]');
-    const catalogKey = activeSection ? activeSection.id : null;
+    Object.keys(catalog).forEach(galleryId => {
+        const catalogKey = galleryId;
+        const files = Object.values(catalog[catalogKey])
+            .flat()
+            .map(item => `${catalogKey}/${item.name}/${item.cover}`);
+        const galleryDiv = document.querySelector(`#${catalogKey} .gallery`);
+        if (!galleryDiv) return;
 
-    if (catalogKey && catalog[catalogKey]) {
-        const galleryDiv = activeSection.querySelector('.gallery');
-        if (galleryDiv) {
-            const items = Object.values(catalog[catalogKey]).flat();
-            
-            items.forEach(item => {
+        files
+            .filter(file => {
+                const ext = file.toLowerCase().slice(file.lastIndexOf('.'));
+                return ext === '.jpg' || ext === '.jpeg' || ext === '.png';
+            })
+            .forEach(file => {
                 const slide = document.createElement('div');
                 slide.className = 'gallery-slide';
-                const link = document.createElement('a');
-                link.href = `galleryDetail.html?cat=${catalogKey}&gal=${encodeURIComponent(item.name)}`;
-                
+                const clicableLink = document.createElement('a');
+                const galName = file.split('/')[1];
+                clicableLink.href = `galleryDetail.html?cat=${encodeURIComponent(catalogKey)}&gal=${encodeURIComponent(galName)}`;
                 const img = document.createElement('img');
-                img.src = `images/${catalogKey}/${item.name}/${item.cover}`;
-                img.alt = item.name;
-                
-                link.appendChild(img);
-                slide.appendChild(link);
+                img.src = `images/${file}`;
+                img.alt = 'Gallery image';
+                clicableLink.appendChild(img);
+                slide.appendChild(clicableLink);
                 galleryDiv.appendChild(slide);
             });
-        }
-    }
+    });
 
-    // Obsługa strzałek
-    document.querySelectorAll('.gallery-container').forEach(container => {
+    const galleryContainers = document.querySelectorAll('.gallery-container');
+    galleryContainers.forEach(container => {
         const gallery = container.querySelector('.gallery');
-        const prev = container.querySelector('.gallery-nav-left');
-        const next = container.querySelector('.gallery-nav-right');
+        const prevButton = container.querySelector('.gallery-nav-left');
+        const nextButton = container.querySelector('.gallery-nav-right');
+        const slides = gallery.querySelectorAll('.gallery-slide');
+        let currentIndex = 0;
+        const totalSlides = slides.length;
 
-        if (prev) prev.addEventListener('click', () => gallery.scrollBy({ left: -gallery.clientWidth, behavior: 'smooth' }));
-        if (next) next.addEventListener('click', () => gallery.scrollBy({ left: gallery.clientWidth, behavior: 'smooth' }));
+        const updateArrowVisibility = () => {
+            if (!prevButton || !nextButton) return;
+            if (totalSlides <= 1) {
+                prevButton.style.display = 'none';
+                nextButton.style.display = 'none';
+                return;
+            }
+            prevButton.style.display = currentIndex > 0 ? 'flex' : 'none';
+            nextButton.style.display = currentIndex < totalSlides - 1 ? 'flex' : 'none';
+        };
+
+        const goToSlide = (index) => {
+            currentIndex = Math.min(Math.max(index, 0), totalSlides - 1);
+            gallery.scrollTo({ left: currentIndex * gallery.clientWidth, behavior: 'smooth' });
+            updateArrowVisibility();
+        };
+
+        if (prevButton) {
+            prevButton.addEventListener('click', () => goToSlide(currentIndex - 1));
+        }
+        if (nextButton) {
+            nextButton.addEventListener('click', () => goToSlide(currentIndex + 1));
+        }
+
+        updateArrowVisibility();
+        window.addEventListener('resize', () => goToSlide(currentIndex));
     });
 });
