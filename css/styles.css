@@ -248,6 +248,7 @@ section.active p {
     width: 100%;
     flex: 1;
     min-height: 0;
+    font-size: 14px; 
 }
 
 .text-slider {
