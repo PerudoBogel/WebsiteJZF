@@ -378,7 +378,7 @@ section.active p {
     border-radius: 8px;
     text-align: center;
     max-width: 150px;
-    font-size: 1.5rem;
+    font-size: 14px; 
     line-height: 1.4;
 }
 

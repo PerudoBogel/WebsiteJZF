@@ -2,8 +2,8 @@
 // Events are spaced evenly to show sequence, not proportional to time
 const timelineEvents = [
     {
-        year: "2015",
-        description: "Początek kariery artystycznej"
+        year: "1985",
+        description: "Otwarty ogólnopolski konkurs na projekt medalu poświęconego pamięci Henryka Bieniawskiego- wyróżnienie pierwszego stopnia, pracownie sztuk plastycznych oddział w Warszawie"
     },
     {
         year: "2017",
