@@ -62,5 +62,5 @@ if (data) {
         updateArrowVisibility();
         window.addEventListener('resize', () => goToSlide(currentIndex));
     });
-    // document.getElementById('title').innerText = data.description || "Brak opisu.";
+    document.getElementById('title').innerText = data.description || "Brak opisu.";
 }

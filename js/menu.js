@@ -1,4 +1,5 @@
 const menuToggle = document.getElementById('menu-toggle');
+const backToggle = document.getElementById('menuBack');
 const menu = document.getElementById('menu');
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -9,6 +10,10 @@ document.addEventListener('DOMContentLoaded', function() {
         menuToggle.addEventListener('click', function() {
             menu.style.display = 'flex';
             menuToggle.style.display = 'none';
+            if(backToggle)
+            {
+                backToggle.style.display = 'none';
+            }
         });
 
         // Zamknij menu po kliknięciu w logo lub tło (opcjonalnie)
@@ -17,6 +22,10 @@ document.addEventListener('DOMContentLoaded', function() {
             menuLogo.addEventListener('click', function() {
                 menu.style.display = 'none';
                 menuToggle.style.display = 'flex';
+                if(backToggle)
+                {
+                    backToggle.style.display = 'flex';
+                }
             });
         }
     }
