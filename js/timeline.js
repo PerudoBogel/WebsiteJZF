@@ -56,7 +56,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // add milestone if year changed
             if (lastYear != eventYear) {
-                addMilestoneMarker(eventYear, (event_i * eventWidth) / eventCount * 10 + timelinePadding);
+                let position = (event_i * eventWidth) + timelinePadding;
+                console.log(`Adding milestone for year ${eventYear} at position ${position}px`);
+                console.log(`Event year: ${eventYear}, Event index: ${event_i}, Event count: ${eventCount}`);
+                addMilestoneMarker(eventYear, position);
             }
             lastYear = eventYear;
         };
