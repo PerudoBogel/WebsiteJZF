@@ -31,6 +31,7 @@ footer {
     flex-shrink: 0;
     display: block;
     height: 65px;
+    user-select: none;
 }
 
 main {
@@ -332,6 +333,7 @@ section.active p {
     min-width: max-content;
     padding: 40px 250px;
     align-items: flex-start;
+    user-select: none;
 }
 
 .timeline-axis {
