@@ -5,7 +5,7 @@ const gal = params.get('gal');
 const key = `${cat}/${gal}`;
 const data = galleryDetails[key];
 const backLink = document.getElementById('menuBack');
-backLink.href = `${encodeURIComponent(cat)}.html`;
+backLink.href = `${encodeURIComponent(cat)}.html?gal=${encodeURIComponent(gal)}`;
 
 if (data) {
     // Build galleries and arrow navigation.
