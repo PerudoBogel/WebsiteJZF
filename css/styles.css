@@ -54,6 +54,7 @@ main {
 }
 
 #menu-logo {
+    cursor: pointer;
     position: relative;
     z-index: 10;
     left: 0px;
@@ -63,6 +64,8 @@ main {
     position: relative;
     z-index: 10;
     left: 10px;
+    display: grid;
+    place-items: center;
 }
 
 #menu {
@@ -71,7 +74,6 @@ main {
     align-items: center;          /* Vertical alignment */
     width: 100%;
     background-color: #8d8d8d;
-    height: 65px;
     top: 0px;
     z-index: 10;
 }
@@ -97,7 +99,7 @@ main {
     display: flex;
 }
 
-#menu-select li a{
+#menu-option {
     width: 150px;
 }
 
