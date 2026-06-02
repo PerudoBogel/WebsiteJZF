@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const img = document.createElement('img');
                 img.src = `images/${file}`;
                 img.alt = 'Gallery image';
+                img.classList.add('selectable');
                 clicableLink.appendChild(img);
                 slide.appendChild(clicableLink);
                 galleryDiv.appendChild(slide);

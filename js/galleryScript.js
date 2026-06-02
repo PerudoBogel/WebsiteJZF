@@ -1,4 +1,3 @@
-const footer = document.getElementsByTagName('footer')[0];
 const params = new URLSearchParams(window.location.search);
 const cat = params.get('cat');
 const gal = params.get('gal');

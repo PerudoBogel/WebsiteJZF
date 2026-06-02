@@ -83,4 +83,6 @@ document.addEventListener('DOMContentLoaded', function() {
     adjustMenuAndFooterHeight();
 
     window.addEventListener('resize', function() {adjustMenuAndFooterHeight();});
+    window.addEventListener("orientationchange", function() {adjustMenuAndFooterHeight();});
+    
 });
