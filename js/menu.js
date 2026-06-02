@@ -36,27 +36,20 @@ function adjustMenuAndFooterHeight() {
         const fontSize = newHeight * 20 / 65;
         if (header) {
             header.style.fontSize = `${fontSize}px`;
+        }
+        if (footer) {
             footer.style.fontSize = `${fontSize}px`;
         }
-        // divider in #menu-select li:not(:last-child)::after is 50px at 65px header height, so reduce it proportionally as well.
-        // update all sheets and rules to find the one that matches the selector and update its font size.
-        const dividerSize = newHeight * 50 / 65;
-        // 1. Szukamy naszego dedykowanego tagu <style> w sekcji <head>
-        let dynamicStyleTag = document.getElementById('dynamic-menu-styles');
 
-        // 2. Jeśli go jeszcze nie ma, tworzymy go (wykona się tylko raz)
+        // divider in #menu-select li:not(:last-child)::after is 50px at 65px header height, so reduce it proportionally as well.
+        const dividerSize = newHeight * 50 / 65;
+        let dynamicStyleTag = document.getElementById('dynamic-menu-styles');
         if (!dynamicStyleTag) {
             dynamicStyleTag = document.createElement('style');
             dynamicStyleTag.id = 'dynamic-menu-styles';
             document.head.appendChild(dynamicStyleTag);
         }
-        // 3. Nadpisujemy starą wartość nowym rozmiarem czcionki
-        // Zauważ, że tekstContent całkowicie czyści poprzedni wpis, więc pamięć jest bezpieczna
-        dynamicStyleTag.textContent = `
-            #menu-select li:not(:last-child)::after {
-                font-size: ${dividerSize}px;
-            }
-        `;
+        dynamicStyleTag.textContent = `#menu-select li:not(:last-child)::after { font-size: ${dividerSize}px; }`;
     }
 }
 
