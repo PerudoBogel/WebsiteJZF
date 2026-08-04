@@ -279,6 +279,10 @@ const timelineEvents = [
     },
     {
         year: "2026",
+        description: 'II Międzynarodowy Plener Wikliny Artystycznej w Rudniku nad Sanem'
+    },
+    {
+        year: "2026",
         description: 'XXIII Międzynarodowy Plener Artystyczny, “Wiklina w Arboretum”, Arboretum i Zakład Fizjografii, Bolestraszyce'
     }
 ];
